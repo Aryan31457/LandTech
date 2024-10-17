@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandTech - Design Services</title>
+
+    <!-- Favicon for the website (house icon) -->
+    <link rel="icon" href="" type="image/x-icon"> <!-- Replace with your favicon image path -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg');
+            /* Use the uploaded background image */
+            background-size: cover;
+            /* Ensure it covers the entire screen */
+            background-position: center center;
+            /* Center the background */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('your-background-image.jpg');
+            /* Strong background image with overlay */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #000000;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            background-color: #cccccc;
+        }
+
+        .main-heading {
+            font-size: 4em;
+            font-weight: 900;
+            margin-left: 20px;
+        }
+
+        .sub-heading {
+            margin-left: 20px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* New note bar */
+        .note-bar {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            width: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Light transparent background */
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* Form container */
+        .form-container {
+            position: absolute;
+            left: 40px;
+            bottom: 50px;
+            width: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Light transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-container h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            color: white;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            /* Light transparent input */
+            color: white;
+        }
+
+        .form-container button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #cccccc;
+        }
+        .image-scroll {
+            position: absolute;
+            right: 0;
+            top: 50vh;
+            height: 50vh;
+            width: 250px;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Light transparency */
+            padding: 10px;
+        }
+
+        .image-scroll img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .bottom-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 50px;
+        }
+
+        .property-card {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .property-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .property-card p {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .date {
+            font-size: 0.9em;
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+    <nav>
+        <div>
+            <h2>LandTech</h2>
+        </div>
+        <ul>
+            <li onclick="window.location.href='index.html';" style="cursor:pointer;">Home</li>
+            <!-- Redirect back to home -->
+            <li onclick="window.location.href='about.html';" style="cursor:pointer;">About</li>
+            <!-- Redirect to about.html -->
+            <li onclick="window.location.href='services.html';" style="cursor:pointer;">Services</li>
+            <!-- Redirect to services.html -->
+        </ul>
+    <button class="cta-button" onclick="window.location.href='login-signup.html';">Get Started</button>
+
+    </nav>
+
+        <div>
+            <h1 class="main-heading">Our Design Services</h1>
+            <h2 class="sub-heading">Transforming Ideas into Reality.</h2>
+        </div>
+
+        <!-- New note bar section -->
+        <div class="note-bar">
+            <p>We specialize in delivering innovative design solutions tailored to your needs. Let's create something
+                extraordinary together!</p>
+        </div>
+
+        <!-- Form container section -->
+        <div class="form-container">
+            <h3>Contact Us</h3>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Image scroll section -->
+        <div class="image-scroll">
+            <img src="1.png" alt="Property 1"> <!-- Replace with your images -->
+            <img src="10.png" alt="Property 2">
+            <img src="15.png" alt="Property 3">
+            <img src="41.png" alt="Property 4">
+            <img src="81.png" alt="Property 1"> <!-- Replace with your images -->
+            <img src="85.png" alt="Property 2">
+            <img src="15.png" alt="Property 3">
+            <img src="41.png" alt="Property 4">
+        </div>
+
+        <div class="bottom-section">
+            <div class="property-card">
+                <img src="property.jpg" alt="Property"> <!-- Replace with property image -->
+                <p>We will help you sell your property at the best price</p>
+                <p class="date">12/2/24</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

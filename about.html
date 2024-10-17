@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandTech - About Us</title>
+    <link rel="icon" href="" type="image/x-icon"> <!-- Replace with your favicon image path -->
+
+    <style>
+        /* Same styles as the main page for UI consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('bg.jpg');
+            /* Use the uploaded background image */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #000000;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            background-color: #cccccc;
+        }
+
+        .main-heading {
+            font-size: 4em;
+            font-weight: 900;
+            margin-left: 20px;
+        }
+
+        .sub-heading {
+            margin-left: 20px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .about-section {
+            padding: 40px;
+        }
+
+        /* Dataset container styling */
+        .dataset-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .dataset-card {
+            background-color: white;
+            color: black;
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .dataset-card h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <div>
+                <h2>LandTech</h2>
+            </div>
+            <ul>
+                <li onclick="window.location.href='index.html';" style="cursor:pointer;">Home</li>
+                <!-- Redirect back to home -->
+                <li onclick="window.location.href='about.html';" style="cursor:pointer;">About</li>
+                <!-- Redirect to about.html -->
+                <li onclick="window.location.href='services.html';" style="cursor:pointer;">Services</li>
+                <!-- Redirect to services.html -->
+            </ul>
+        <button class="cta-button" onclick="window.location.href='login-signup.html';">Get Started</button>
+
+        </nav>
+
+        <div>
+            <h1 class="main-heading">About Us</h1>
+            <h2 class="sub-heading">Building the future of real estate investment with advanced technology.</h2>
+        </div>
+
+        <div class="about-section">
+            <p>At LandTech, we are dedicated to transforming the landscape of property investments by providing
+                cutting-edge technology and comprehensive solutions. Our focus is on making property investments
+                seamless, efficient, and transparent for all stakeholders.</p>
+
+            <h2>Our Datasets</h2>
+
+            <!-- Dataset container section -->
+            <div class="dataset-container">
+                <div class="dataset-card">
+                    <h3>Property Data</h3>
+                    <p>4BHK</p>
+                </div>
+
+                <div class="dataset-card">
+                    <h3>Property Data</h3>
+                    <p>3BHK</p>
+                </div>
+
+                <div class="dataset-card">
+                    <h3>Property Data</h3>
+                    <p>2BHK</p>
+                </div>
+
+                <div class="dataset-card">
+                    <h3>Property Data</h3>
+                    <p>1BHK</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
