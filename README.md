@@ -5,7 +5,7 @@ Welcome to **LandTech** – the one-stop tool for crafting **customized floor pl
 ## 🎉 Features That’ll Blow Your Mind!
 
 - **Home Page**: You’re greeted with a sleek, stylish page that gives you the lowdown on how LandTech can make your life easier. Get ready to be amazed! 🌟  
-![Alt text](home(2).png  "Home Page")
+![Alt text](homee.png  "Home Page")
   
 - **Generate Page**: Time to get creative! Input your dream layout, choose your rooms, tweak the details, and watch the magic unfold. 🪄  
 
