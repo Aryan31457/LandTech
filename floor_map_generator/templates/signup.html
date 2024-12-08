@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="signup-section">
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Password:</label>
+                {{ form.password1 }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn signup-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}" class="login-link">Login</a></p>
+    </div>
+</div>
+
+<style>
+    /* Sign-Up Page Styles */
+    .signup-section {
+        padding: 100px 0;
+        background-color: #f8f8f8;
+    }
+
+    .signup-section .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .signup-section h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #2c3e50;
+    }
+
+    .signup-form {
+        margin-bottom: 20px;
+    }
+
+    .signup-form .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .signup-form .form-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .btn.signup-btn {
+        background-color: #ff6b6b;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .btn.signup-btn:hover {
+        background-color: #ff4757;
+    }
+
+    .login-link {
+        font-size: 18px;
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link:hover {
+        color: #ff6b6b;
+    }
+</style>
+
+{% endblock %}

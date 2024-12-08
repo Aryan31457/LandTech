@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Dashboard</h1>
+    <p>Welcome, {{ user.username }}!</p>
+    <h2>Your Projects</h2>
+    {% if floor_maps %}
+        <ul>
+        {% for floor_map in floor_maps %}
+            <li>{{ floor_map.name }} ({{ floor_map.floor_type }}, {{ floor_map.width }}x{{ floor_map.length }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any projects yet. Start by generating a new floor map!</p>
+    {% endif %}
+    <a href="{% url 'generate' %}" class="btn">Create New Floor Map</a>
+</div>
+{% endblock %}

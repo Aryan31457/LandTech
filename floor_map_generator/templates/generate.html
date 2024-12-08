@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Centered Content Section -->
+<div class="container d-flex align-items-center justify-content-center min-vh-100" style="padding-top: 100px;">
+
+    <!-- Content Wrapper -->
+    <div class="text-center">
+        <!-- Header -->
+        <h1 class="my-5 text-primary font-weight-bold" style="font-size: 48px; letter-spacing: 2px;">Generate Floor Map</h1>
+
+        <!-- Floor Map Form -->
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg rounded-lg border-0">
+                    <div class="card-body p-5">
+                        <form method="POST" id="floorMapForm">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="rooms" class="font-weight-bold text-secondary">Number of Rooms:</label>
+                                <input type="number" id="rooms" name="rooms" class="form-control form-control-lg" required placeholder="Enter the number of rooms">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="bathroom" class="font-weight-bold text-secondary">Number of Bathrooms:</label>
+                                <input type="number" id="bathroom" name="bathroom" class="form-control form-control-lg" required placeholder="Enter the number of bathrooms">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="kitchen" class="font-weight-bold text-secondary">Number of Kitchens:</label>
+                                <input type="number" id="kitchen" name="kitchen" class="form-control form-control-lg" required placeholder="Enter the number of kitchens">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" style="border-radius: 50px; font-size: 20px; padding: 15px 30px;">Generate Floor Map</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Section for Generated Designs -->
+        <div id="carouselSection" class="mt-5 w-100" style="display: none;">
+            <h3 class="text-center text-success font-weight-bold">Generated Floor Maps</h3>
+            <div class="carousel-container">
+                <div class="carousel d-flex justify-content-center align-items-center" id="carousel">
+                    <!-- Carousel items will be injected here -->
+                </div>
+                <button class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-control next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script (kept same as provided) -->
+<script>
+    document.getElementById('floorMapForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        document.getElementById('carouselSection').style.display = 'none';
+        const submitButton = e.target.querySelector('button');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Generating...';
+
+        const formData = new FormData(this);
+        const data = {
+            rooms: formData.get('rooms'),
+            bathroom: formData.get('bathroom'),
+            kitchen: formData.get('kitchen')
+        };
+
+        fetch("{% url 'generate_map' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                const data_message = data.error;
+                const json_str = data_message.split("BadStatusLine('")[1].split("')")[0];
+                const parsedData = JSON.parse(json_str);
+                const image_urls = parsedData.images || [];
+
+                const carousel = document.getElementById('carousel');
+                carousel.innerHTML = '';
+
+                image_urls.forEach((url, index) => {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.classList.add('carousel-item');
+
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = "Generated Floor Map";
+                    img.style.width = '300px';
+                    img.style.height = 'auto';
+
+                    const caption = document.createElement('p');
+                    caption.classList.add('carousel-caption');
+                    caption.innerText = `Design ${index + 1}`;
+
+                    const downloadBtn = document.createElement('a');
+                    downloadBtn.href = url;
+                    downloadBtn.download = `floor_map_${index + 1}.jpg`;
+                    downloadBtn.classList.add('btn', 'btn-secondary', 'download-btn');
+                    downloadBtn.innerHTML = 'Download &#8681;';
+
+                    carouselItem.appendChild(img);
+                    carouselItem.appendChild(caption);
+                    carouselItem.appendChild(downloadBtn);
+
+                    carousel.appendChild(carouselItem);
+                });
+
+                document.getElementById('carouselSection').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            alert('An error occurred while generating the floor map.');
+            console.error(error);
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Generate Floor Map';
+        });
+    });
+
+    let currentIndex = 0;
+
+    function moveCarousel(direction) {
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const totalItems = carouselItems.length;
+        currentIndex = (currentIndex + direction + totalItems) % totalItems;
+
+        carouselItems.forEach((item, index) => {
+            item.style.display = index === currentIndex ? 'block' : 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        moveCarousel(0);
+    });
+</script>
+
+<!-- CSS (kept consistent with home page) -->
+<style>
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .carousel {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel-item {
+        display: none;
+        flex: 0 0 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .carousel-item img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    .carousel-control.prev {
+        left: 10px;
+    }
+
+    .carousel-control.next {
+        right: 10px;
+    }
+
+    .download-btn {
+        margin-top: 10px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #6f42c1;
+    }
+
+    /* Centering the form box and buttons */
+    .form-group label {
+        text-align: left;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .card-body {
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .btn-primary {
+        font-size: 20px;
+        padding: 15px 30px;
+        border-radius: 50px;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+
+    /* Form Alignment */
+    .card {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ floor_map.name }}</h1>
+    <div class="floor-map-details">
+        <p><strong>Floor Type:</strong> {{ floor_map.floor_type }}</p>
+        <p><strong>Dimensions:</strong> {{ floor_map.width }}m x {{ floor_map.length }}m</p>
+        <p><strong>Total Rooms:</strong> {{ floor_map.num_rooms }}</p>
+        <p><strong>Bedrooms:</strong> {{ floor_map.num_bedrooms }}</p>
+        <p><strong>Kitchens:</strong> {{ floor_map.num_kitchens }}</p>
+        <p><strong>Bathrooms:</strong> {{ floor_map.num_bathrooms }}</p>
+        <p><strong>Washrooms:</strong> {{ floor_map.num_washrooms }}</p>
+        <p><strong>Description:</strong> {{ floor_map.description }}</p>
+        <p><strong>Prompt:</strong> {{ floor_map.prompt }}</p>
+    </div>
+    <div class="floor-map-image">
+        {% if floor_map.image %}
+            {% cloudinary floor_map.image format="png" width=500 height=500 crop="fit" %}
+        {% else %}
+            <p>Floor map image not available.</p>
+        {% endif %}
+    </div>
+    <a href="{% url 'generate' %}" class="btn">Generate Another Floor Map</a>
+</div>
+{% endblock %}
